@@ -1,0 +1,63 @@
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>国家大豆改良中心服务器</title>
+        <link rel="stylesheet" href="../bootstrap.min.css">
+    </head>
+
+    <body style="padding-top:80px">
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../">国家大豆改良中心服务器</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://172.30.0.82/ganglia/" target="_blank">运行状态</a></li>
+                        <li><a href="http://172.30.0.82/phpsysinfo/" target="_blank">系统信息</a></li>
+                        <li><a href="../help">使用帮助</a></li>
+                        <li><a href="../apps">软件列表</a></li>
+                        <li><a href="https://github.com/njau-sri/hpc/tree/master/qsub" target="_blank">任务脚本</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <p class="lead">服务器目前由1个登录节点和2个计算节点组成。登录节点配置2颗4核Intel Xeon E5-2609处理器，16GB运行内存，主要用于集群登陆、文件存储、软件安装、任务调度等。计算节点配置2颗8核Intel Xeon E5-2670处理器，48/16GB运行内存，用于科学计算。总的存储容量为24TB。</p>
+            <p class="lead">服务器IP地址：172.30.0.82</p>
+            <p class="lead">联系管理员：hjbxyz@gmail.com</p>
+        </div>
+
+        <div class="container">
+            <div>
+                <h1 class="page-header">通知公告</h1>
+                <p>
+                    2016/02/23 任务脚本示例已存储到本地目录 /ds3512/public/qsub/<br>
+                    2016/02/22 <strong>QTLNetwork软件Linux版有错误，请改用Windows桌面版</strong><br>
+                    2016/01/13 软件列表已更新<br>
+                    2016/01/05 帮助文档已更新<br>
+                    2015/12/31 服务器已恢复运行
+                </p>
+            </div>
+        </div>
+
+        <footer class="footer" style="padding-top:20px">
+            <div class="container text-muted">
+                <p class="text-center">&copy; 2015 国家大豆改良中心</p>
+            </div>
+        </footer>
+
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    </body>
+</html>

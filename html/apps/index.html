@@ -1,0 +1,116 @@
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>软件列表</title>
+        <link rel="stylesheet" href="../bootstrap.min.css">
+    </head>
+
+    <body style="padding-top:80px">
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../">国家大豆改良中心服务器</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://172.30.0.82/ganglia/" target="_blank">运行状态</a></li>
+                        <li><a href="http://172.30.0.82/phpsysinfo/" target="_blank">系统信息</a></li>
+                        <li><a href="../help">使用帮助</a></li>
+                        <li><a href="../apps"><strong>软件列表</strong></a></li>
+                        <li><a href="https://github.com/hjbreg/ncsi-hpc/tree/master/qsub" target="_blank">任务脚本</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <p class="lead">除系统自带软件外，其它应用软件通常安装在目录 /opt/bio/ 和 /share/apps/ 下。</p>
+            <p class="lead">任务脚本示例存储在目录 /ds3512/public/qsub/ 下。</p>
+        </div>
+
+        <div class="container">
+            <div>
+                <h1 class="page-header">编程语言</h1>
+                <table class="table table-hover">
+                    <thead>
+                        <tr><th>名称</th><th>路径</th><th>版本</th><th>帮助</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>GCC</td><td>/usr/bin/</td><td>4.4.7</td><td><a href="https://gcc.gnu.org/onlinedocs/" target="_blank">gcc.gnu.org/onlinedocs</a></td></tr>
+                        <tr><td>Java</td><td>/usr/java/latest/</td><td>1.7.0</td><td><a href="https://docs.oracle.com/en/java/" target="_blank">docs.oracle.com/en/java</a></td></tr>
+                        <tr><td>Python</td><td>/opt/python/</td><td>2.7.6, 3.3.4</td><td><a href="https://www.python.org/doc/" target="_blank">www.python.org/doc</a></td></tr>
+                        <tr><td>Perl</td><td>/opt/perl/</td><td>5.14.2</td><td><a href="https://www.perl.org/docs.html" target="_blank">www.perl.org/docs.html</a></td></tr>
+                        <tr><td>R</td><td>/share/apps/R/</td><td>3.2.3</td><td><a href="https://cran.r-project.org/manuals.html" target="_blank">cran.r-project.org/manuals.html</a></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h1 class="page-header">数量遗传</h1>
+                <table class="table table-hover">
+                    <thead>
+                        <tr><th>名称</th><th>路径</th><th>版本</th><th>帮助</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>ADMIXTURE</td><td>/share/apps/admixture/</td><td>1.2.3, 1.3.0</td><td><a href="./admixture-manual.pdf" target="_blank">admixture-manual.pdf</a></td></tr>
+                        <tr><td>EIGENSOFT</td><td>/share/apps/eigensoft/</td><td>5.0.2, 6.0.1</td><td>N/A</td></tr>
+                        <tr><td>EMMAX</td><td>/share/apps/emmax/</td><td>20120210</td><td><a href="http://genome.sph.umich.edu/wiki/EMMAX" target="_blank">genome.sph.umich.edu/wiki/EMMAX</a></td></tr>
+                        <tr><td>Haploview</td><td>/share/apps/haploview/</td><td>4.2</td><td><a href="./haploview_doc.pdf" target="_blank">haploview_doc.pdf</a></td></tr>
+                        <tr><td>MLMM</td><td>/share/apps/mlmm/</td><td>N/A</td><td>N/A</td></tr>
+                        <tr><td>PLINK</td><td>/share/apps/plink/</td><td>1.07</td><td><a href="http://pngu.mgh.harvard.edu/~purcell/plink/" target="_blank">pngu.mgh.harvard.edu/~purcell/plink</a></td></tr>
+                        <tr><td>PLINK2</td><td>/share/apps/plink/</td><td>1.90b3.35</td><td><a href="https://www.cog-genomics.org/plink2/" target="_blank">www.cog-genomics.org/plink2/</a></td></tr>
+                        <tr><td><del>QTLNetwork<del></td><td><del>/share/apps/qtlnetwork/<del></td><td><del>20141226<del></td><td><a href="./QTLNetworkUserManual 2_1.pdf" target="_blank"><del>QTLNetworkUserManual 2_1.pdf<del></a></td></tr>
+                        <tr><td>STRUCTURE</td><td>/share/apps/structure/</td><td>2.3.4</td><td><a href="./structure_doc.pdf" target="_blank">structure_doc.pdf</a></td></tr>
+                        <tr><td>fastSTRUCTURE</td><td>/share/apps/fastSTRUCTURE/</td><td>1.0</td><td><a href="https://rajanil.github.io/fastStructure/" target="_blank">rajanil.github.io/fastStructure/</a></td></tr>
+                        <tr><td>TASSEL</td><td>/share/apps/tassel/</td><td>2.1, 3.0.171, 4.3.13, 5.2.18</td><td><a href="https://bitbucket.org/tasseladmin/tassel-5-source/" target="_blank">bitbucket.org/tasseladmin/tassel-5-source</a></td></tr>
+                        <tr><td>R/qtl</td><td>R package</td><td>1.38-4</td><td><a href="http://www.rqtl.org/" target="_blank">rqtl.org</a></td></tr>
+                        <tr><td>MSTMap</td><td>/share/apps/mstmap/</td><td>N/A</td><td><a href="http://alumni.cs.ucr.edu/~yonghui/mstmap.html" target="_blank">alumni.cs.ucr.edu/~yonghui/mstmap.html</a></td></tr>
+                        <tr><td>NPUTE</td><td>/share/apps/npute/</td><td>v1, v2</td><td><a href="http://compgen.unc.edu/NPUTE_README.html" target="_blank">compgen.unc.edu/NPUTE_README.html</a></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h1 class="page-header">生物信息</h1>
+                <table class="table table-hover">
+                    <thead>
+                        <tr><th>名称</th><th>路径</th><th>版本</th><th>帮助</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>HMMER</td><td>/opt/bio/hmmer/</td><td>3.0</td><td><a href="./hmmer-userguide.pdf" target="_blank">hmmer-userguide.pdf</a></td></tr>
+                        <tr><td>NCBI BLAST</td><td>/opt/bio/ncbi/</td><td>2.2.25</td><td>N/A</td></tr>
+                        <tr><td>NCBI BLAST+</td><td>/share/apps/ncbi-blast+/</td><td>2.3.0</td><td>N/A</td></tr>
+                        <tr><td>ClustalW</td><td>/opt/bio/clustalw/</td><td>2.1</td><td>N/A</td></tr>
+                        <tr><td>EMBOSS</td><td>/opt/bio/EMBOSS/</td><td>6.3.1</td><td>N/A</td></tr>
+                        <tr><td>Glimme</td><td>/opt/bio/glimmer/</td><td>3.02</td><td>N/A</td></tr>
+                        <tr><td>Fasta</td><td>/opt/bio/fasta/</td><td>36.3.5a</td><td>N/A</td></tr>
+                        <tr><td>MrBayes</td><td>/opt/bio/mrbayes/</td><td>3.1.2</td><td>N/A</td></tr>
+                        <tr><td>Phylip</td><td>/opt/bio/phylip/</td><td>3.69</td><td>N/A</td></tr>
+                        <tr><td>T_Coffee</td><td>/opt/bio/tcoffee/</td><td>8.99</td><td>N/A</td></tr>
+                        <tr><td>TIGR Assembler</td><td>/opt/bio/tigr/</td><td>v2</td><td>N/A</td></tr>
+                        <tr><td>mpiBLAST</td><td>/opt/bio/mpiblast/</td><td>1.6.0</td><td>N/A</td></tr>
+                        <tr><td>BioPerl</td><td>/opt/perl/</td><td>1.6.922</td><td>N/A</td></tr>
+                        <tr><td>GROMACS</td><td>/opt/gromacs/</td><td>4.5.4</td><td>N/A</td></tr>
+                        <tr><td>MEGA</td><td>/share/apps/mega/</td><td>7</td><td><a href="./MEGA7-CC-User-Manual.pdf" target="_blank">MEGA7-CC-User-Manual.pdf</a></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer class="footer" style="padding-top:20px">
+            <div class="container text-muted">
+                <p class="text-center">&copy; 2015 国家大豆改良中心</p>
+            </div>
+        </footer>
+
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    </body>
+</html>

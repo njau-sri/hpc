@@ -1,0 +1,240 @@
+# 13234789    bychromosome     -filetype map.inp
+#
+#   B. L. Rauh, C. Basten, E. S. Buckler IV Quantitative trait loci analysis of 
+#   growth response to varying nitrogen sources in Arabidopsis thaliana
+#   Theor Appl Genet (2002) 104: 743-750
+#
+#  This is the map file for the data files rootmass.inp,  arialmass.inp, 
+#   rootlength.inp and ratio.inp.   
+#
+-type positions
+-function     2  where 1 => haldane mapping function,
+                       2 => kosambi and 
+                       3 => fixed (no mapping function).
+-Units       cM  where cM means centiMorgans 
+-chromosomes  5  the haploid number of chromosomes 
+-maximum      63  markers on any chromosome.   
+-named      yes  markers will have names.   
+
+-start 
+-Chromosome 1	
+ve001	0.87
+O846A	4.02
+m488	5.63
+apx1A	7.2
+mi443	9.31
+ATTS0477	10.44
+CDs7	13.55
+EG17G9	16.67
+ve007	18.8
+mi348	21.49
+mi113	22.53
+ARR7	24.21
+mi203	26.01
+g3829	27.73
+m235	31.9
+mi265	34.7
+mi163	35.2
+mi62	38.88
+mi116	40.02
+CDs12	43
+ve009	48.67
+m253	49.77
+mi423a	52.45
+mi63	54.58
+mi342	56.66
+mi133	59.06
+mi72	61.46
+mi291a	69.84
+mi208	71.39
+p4	72.94
+m213	75.63
+PAP240	78.99
+mi303	81.67
+mi259	84.28
+agp1e	86.14
+mi353	88.68
+mi424	90.39
+m315	93.96
+mi185	98.87
+g4552	100.94
+Tag1	106.47
+mi103	108.49
+PAB5	110.42
+mi425	113.89
+m532	114.52
+ve011	116.1
+agp64	117.71
+ve043	120.51
+g17311	122.14
+pAtT32CX	131.6
+-Chromosome 2	
+Tel2N	0
+ve012	7.37
+mi320	9.56
+m246	11.04
+g4553	13.37
+mi310	18.61
+mi421	19.16
+g4133	23.8
+PR1	26.65
+mi398	29.27
+THY_1	32.2
+m216	33.15
+mi139	35.06
+mi148	36.18
+mi238	39.94
+O802F	40.45
+g6842	46.83
+er	49.54
+mi54	56.21
+m220	57.73
+nga361	62.03
+ve015	63.16
+mi277	66.62
+ve018	68.97
+O5841	73.58
+CK_97	75.76
+m336	78.58
+mi473	82.55
+mi79a	86.77
+RRS2	98.35
+-Chromosome 3	
+Psm792	0
+CA1	4.16
+mi74b	5.75
+mi199	6.79
+mi172	8.37
+m583	12.65
+mi355	13.83
+mi467	15.58
+mi357	16.15
+mi207	18.52
+mi289	22.89
+mi339	24.52
+m105	28.67
+mi268	30.79
+mi386	36.28
+mi225	37.39
+mi178	43.65
+mi413	50.55
+mi79b	53.69
+ve021	58.51
+g4117	61.26
+g4564b	64.54
+g4014	67.52
+AtPK41A	71.18
+m457	72.34
+AFC1	74.09
+ve022	76.96
+g2778	78.58
+m424	83
+nga6	85.28
+TSA1	92.09
+tai224	101.45
+-Chromosome 4	
+Tel4N	0
+mi51	1.53
+mi204	4.57
+g3843	6.93
+mi301	8.73
+mi390	10.8
+app	13.92
+Gsl_ohp	15.67
+m448A	18.76
+mi87	20.91
+mi167	21.48
+RPS18C	27.44
+m518A	28.92
+BIO206	35.06
+pCITd23	37.51
+g4108	40.75
+mi465	43.14
+mi128	45.91
+mi30	47.52
+m326	49.15
+mi260	51.72
+m226	54.23
+mi112	55.33
+mi32	58.11
+AG	60.35
+JGB9	62.91
+agp21e	64.65
+mi422	66.56
+mi475	69.4
+SEP2B	71.04
+mi123	72.84
+mi232	73.95
+CDs11	77.26
+g8300	78.4
+O6455	80.54
+fah1	83.46
+pCITd99	84.78
+m214	88.77
+AP2	93.09
+HLS1	94.79
+g2486	98.86
+um596A	99.88
+ve031	102.79
+mi369	105.76
+yw16	107.23
+SAUR_AC1	114.33
+SAUR	116.28
+-Chromosome 5	
+PDC3	0
+O5629	4.18
+g3715	7.19
+mi121	11.63
+O6569	14.39
+m217	17.98
+g3837	18.5
+mi97	20.11
+KG31	21.65
+ve033	24.97
+CDs5	25.87
+mi174	29.14
+cor6.6	31.93
+mi322	33.3
+g4560	36.49
+TSL	37.38
+mi138	39.21
+mi433	41.84
+mi90	42.35
+aw22	47.75
+g4715b	53.8
+mi219	57.03
+mi125	64.97
+mi137	70.97
+CATTS019	78.51
+mi323	79.01
+m247	80.04
+g4028	84.37
+mCH1	85.62
+mi194	88.7
+mi83	91.8
+mi423b	94.99
+mi61	96.3
+ve027	98.76
+mi271	102.22
+PAP3	104.96
+m435	106.82
+h2a1	109.86
+mi70	111.85
+mi69	112.38
+emb514	114.04
+ATR3	116.58
+agp27e	119.91
+ve032	121.36
+g2368	123.25
+mi335	129.24
+m555	130.73
+BIO205	132.55
+STL	136.87
+-stop
+
+-end  
+
+
+
+
+
