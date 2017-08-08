@@ -1,0 +1,137 @@
+
+prefix=/share/apps
+
+# GCC
+cd
+tar jxf /public/software/gcc-6.3.0.tar.bz2
+cd gcc-6.3.0
+./contrib/download_prerequisites
+cd ..
+mkdir gcc-6.3.0-bin
+cd gcc-6.3.0-bin
+../gcc-6.3.0/configure --prefix=$prefix/gcc/6.3.0 --enable-languages=c,c++,fortran --disable-multilib --disable-nls
+make -j4
+make install
+
+
+# JAVA
+cd
+mkdir $prefix/java
+tar zxf /public/software/local/jre-8u131-linux-x64.tar.gz -C $prefix/java
+ln -s $prefix/java/jre1.8.0_131 $prefix/java/default
+ln -s $prefix/java/jre1.8.0_131 $prefix/java/latest
+
+
+# VCFtools
+cd
+tar zxf /public/software/apps/vcftools-vcftools-v0.1.15-0-g1d27c24.tar.gz
+cd vcftools-vcftools-1d27c24
+./autogen.sh
+./configure
+make
+cp src/cpp/vcftools /share/apps/vcftools/vcftools-0.1.15
+
+
+# PLINK
+cd
+unzip /public/software/apps/plink-1.07-x86_64.zip
+cp plink-1.07-x86_64/plink $prefix/plink/plink-1.07
+unzip /public/software/apps/plink-1.90b4.3-x86_64.zip -d plink
+cp plink/plink $prefix/plink/plink-1.90b4.3
+
+
+# BWA
+cd
+tar -jxf /public/software/apps/bwa-0.7.15.tar.bz2
+cd bwa-0.7.15
+make
+mkdir $prefix/bwa
+cp bwa $prefix/bwa/bwa-0.7.15
+
+
+# Samtools
+cd
+tar jxf /public/software/apps/samtools-1.4.1.tar.bz2
+cd samtools-1.4.1
+export CFLAGS="-I/share/apps/local/include"
+export LDFLAGS="-L/share/apps/local/lib"
+./configure
+mkdir $prefix/samtools
+cp samtools $prefix/samtools/samtools-1.4.1
+
+
+# BCFtools
+cd
+tar jxf /public/software/apps/bcftools-1.4.1.tar.bz2
+cd cd bcftools-1.4.1
+make CFLAGS="-I/share/apps/local/include" LDFLAGS="-L/share/apps/local/lib"
+mkdir $prefix/bcftools
+cp bcftools $prefix/bcftools/bcftools-1.4.1
+
+
+# GATK
+cd
+tar jxf /public/software/apps/GenomeAnalysisTK-3.7.tar.bz2
+mkdir $prefix/gatk
+mv GenomeAnalysisTK.jar $prefix/gatk/GenomeAnalysisTK-3.7.jar
+
+
+# NCBI BLAST
+cd
+mkdir $prefix/ncbi-blast
+tar zxf /public/software/apps/ncbi-blast-2.6.0+-x64-linux.tar.gz -C $prefix/ncbi-blast
+ln -s $prefix/ncbi-blast/ncbi-blast-2.6.0+ $prefix/ncbi-blast/default
+ln -s $prefix/ncbi-blast/ncbi-blast-2.6.0+ $prefix/ncbi-blast/latest
+
+
+# TeraStructure
+cd
+unzip /public/software/apps/terastructure-master.zip
+cd terastructure-master/src
+g++ -o terastructure -s -O2 -Wall -I/share/apps/local/include -lpthread *.cc /share/apps/local/lib/libgsl.a /share/apps/local/lib/libgslcblas.a
+mkdir $prefix/terastructure
+cp terastructure $prefix/terastructure/terastructure-20170511
+
+
+# TASSEL
+cd
+tar zxf /public/software/apps/tasseladmin-tassel-5.2.37-standalone-aefe45d43444.tar.gz
+mv tasseladmin-tassel-5-standalone-aefe45d43444 $prefix/tassel/5.2.37
+ln -s $prefix/tassel/5.2.37 $prefix/tassel/default
+ln -s $prefix/tassel/5.2.37 $prefix/tassel/latest
+
+
+# STRUCTURE
+cd
+tar zxf /public/software/apps/structure_linux_console.tar.gz
+mkdir $prefix/structure
+cp console/structure $prefix/structure/structure-2.3.4
+
+
+# ADMIXTURE
+cd
+tar zxf /public/software/apps/admixture_linux-1.3.0.tar.gz
+mkdir $prefix/admixture
+cp admixture_linux-1.3.0/admixture $prefix/admixture/admixture-1.3.0
+
+
+# EMMAX
+cd
+tar zxf /public/software/apps/emmax-intel-binary-20120210.tar.gz
+mkdir $prefix/emmax
+mv emmax-* $prefix/emmax
+
+
+# GCTA
+cd
+unzip /public/software/apps/gcta_1.26.0.zip -d gcta
+mkdir $prefix/gcta
+cp gcta/gcta64 $prefix/gcta/gcta-1.26.0
+
+
+# EIGENSOFT
+cd
+tar zxf /public/software/apps/EIG-6.1.4.tar.gz
+mkdir $prefix/eigensoft
+mv EIG-6.1.4/ /share/apps/eigensoft/6.1.4
+

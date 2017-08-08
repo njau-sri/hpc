@@ -7,7 +7,8 @@
 #$ -l mem_free=4G
 #
 
-PLINK="/share/apps/plink/1.07/plink --noweb"
+VCFTOOLS=/share/apps/vcftools/vcftools-0.1.15
 
 # your code goes here
-$PLINK --help
+
+$VCFTOOLS --vcf geno.vcf --TajimaD 100000

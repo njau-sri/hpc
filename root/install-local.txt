@@ -1,0 +1,56 @@
+
+prefix=/share/apps/local
+
+# OpenBLAS
+cd
+unzip /public/software/local/OpenBLAS-develop-20170511.zip
+cd OpenBLAS-develop
+make USE_THREAD=1 USE_OPENMP=1 NUM_THREADS=4
+make install PREFIX=$prefix
+
+
+# LAPACK
+cd
+tar zxf /public/software/local/lapack-3.7.0.tgz
+cd lapack-3.7.0
+cp make.inc.example make.inc
+make blaslib lapack_install lapacklib lapackelib
+cp lib*.a $prefix/lib
+
+
+# GSL
+cd
+tar zxf /public/software/local/gsl-2.3.tar.gz
+cd gsl-2.3
+./configure --prefix=$prefix
+make
+make install
+
+
+# R  [qtl,eqtl,lme4]
+cd
+tar zxf /public/software/local/R-3.2.5.tar.gz
+cd R-3.2.5
+export LD_LIBRARY_PATH=/share/apps/local/lib:$LD_LIBRARY_PATH
+./configure --prefix=$prefix --with-blas="-L/share/apps/local/lib -lopenblas" --disable-nls
+make
+mkdir -p $prefix/lib64/R/lib
+make install
+
+
+# zlib
+cd
+tar zxf /public/software/local/zlib-1.2.11.tar.gz
+./configure --prefix=$prefix --static
+make
+make install
+
+
+# xz
+cd
+tar zxf /public/software/local/xz-5.2.3.tar.gz
+cd xz-5.2.3
+./configure --prefix=$prefix --disable-shared
+make
+make install
+
