@@ -7,10 +7,10 @@
 #$ -l mem_free=4G
 #
 
-export OPENBLAS_NUM_THREADS=4
-export OMP_NUM_THREADS=4
+export OPENBLAS_NUM_THREADS=2
+export OMP_NUM_THREADS=2
 
-RTM_GWAS=/share/apps/rtm-gwas/1.3
+RTM_GWAS=/share/apps/rtm-gwas/1.4
 
 # your code goes here
 
