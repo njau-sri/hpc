@@ -1,16 +1,16 @@
 #!/bin/bash
 
-VER=0.2.14
+VERSION=0.3.0
 
 TOP=`pwd`
 
-PREFIX=/share/apps/openblas/$VER
+PREFIX=/share/apps/openblas/$VERSION
 
-tar zxf OpenBLAS-$VER.tar.gz
-cd OpenBLAS-$VER
+tar zxf OpenBLAS-$VERSION.tar.gz
+cd OpenBLAS-$VERSION
 
-make -j4 USE_THREAD=1 USE_OPENMP=1 NUM_THREADS=4
+make -j4 USE_THREAD=1 NUM_THREADS=4 GEMM_MULTITHREADING_THRESHOLD=50 NO_AFFINITY=1
 make -j4 install PREFIX=$PREFIX
 
 cd $TOP
-rm -rf OpenBLAS-$VER
+rm -rf OpenBLAS-$VERSION
