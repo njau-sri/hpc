@@ -6,6 +6,6 @@
 
 [提交任务](help/qsub.md)
 
-软件列表
+[软件列表](help/apps.md)
 
 Linux 常用命令
