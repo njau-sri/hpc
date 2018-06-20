@@ -1,5 +1,4 @@
-# hpc
-
+# NCSI HPC cluster
 
 ### 帮助
 
