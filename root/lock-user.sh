@@ -5,6 +5,6 @@ if [ $(id -u) -ne 0 ]; then
     exit 1
 fi
 
-chage -E 0 $1
+usermod -L -e 1 $1
 
 rocks sync users
