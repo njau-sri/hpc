@@ -14,6 +14,7 @@ fi
 
 expire=$(date -d "$expire months" +"%Y-%m-%d")
 
+usermod -U -e 99999 $1
 chage -E $expire $1
 
 rocks sync users
