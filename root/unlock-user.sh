@@ -5,6 +5,15 @@ if [ $(id -u) -ne 0 ]; then
     exit 1
 fi
 
-chage -E -1 $1
+read -p "Enter Expiration Date (months): " expire
+
+if [[ -z "$expire" ]]; then
+    echo "ERROR: expiration date is empty"
+    exit 1
+fi
+
+expire=$(date -d "$expire months" +"%Y-%m-%d")
+
+chage -E $expire $1
 
 rocks sync users
