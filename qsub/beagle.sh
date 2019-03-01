@@ -8,6 +8,8 @@
 #
 
 JAVA=/share/apps/java/jre1.8.0_131/bin/java
+
+# http://faculty.washington.edu/browning/beagle/beagle.html
 BEAGLE=/share/apps/beagle/beagle.08Jun17.d8b.jar
 
 # your code goes here
