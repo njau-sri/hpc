@@ -7,8 +7,8 @@
 #$ -l mem_free=4G
 #
 
-JAVA=/share/apps/java/jre1.8.0_101/bin/java
-GATK=/share/apps/gatk/3.7/GenomeAnalysisTK.jar
+JAVA=/share/apps/java/latest/bin/java
+GATK=/share/apps/gatk/3.8-1-0/GenomeAnalysisTK.jar
 
 # your code goes here
 
