@@ -7,12 +7,11 @@
 #$ -l mem_free=4G
 #
 
-export OMP_NUM_THREADS=2
-export MKL_NUM_THREADS=2
-export OPENBLAS_NUM_THREADS=2
+PREFIX=/share/apps/ropen/3.4.4/lib64/R
 
-RSCRIPT=/share/apps/ropen/3.4.4/lib64/R/bin/Rscript
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
 
 # your code goes here
 
-$RSCRIPT hello.R
+$PREFIX/bin/Rscript hello.R
