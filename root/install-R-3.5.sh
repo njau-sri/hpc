@@ -4,17 +4,18 @@ VERSION=3.5.3
 
 PREFIX=/share/apps/R/$VERSION
 
-BZIP2="bzip2-1.0.6"
-ZLIB="zlib-1.2.11"
-XZ="xz-5.2.4"
-PCRE="pcre-8.43"
-OPENSSL="openssl-1.1.1b"
-CURL="curl-7.64.1"
+BZIP2=bzip2-1.0.6
+ZLIB=zlib-1.2.11
+XZ=xz-5.2.4
+PCRE=pcre-8.43
+OPENSSL=openssl-1.1.1b
+CURL=curl-7.64.1
 
 export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
-export CFLAGS="-I$PREFIX/include"
-export CPPFLAGS="-I$PREFIX/include"
-export LDFLAGS="-L$PREFIX/lib"
+export CFLAGS=-I$PREFIX/include
+export CPPFLAGS=-I$PREFIX/include
+export LDFLAGS=-L$PREFIX/lib
+export LD_LIBRARY_PATH=$PREFIX/lib:$LD_LIBRARY_PATH
 
 TOP=$(pwd)
 
