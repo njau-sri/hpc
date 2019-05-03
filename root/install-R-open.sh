@@ -4,9 +4,9 @@ VERSION=3.4.4
 
 PREFIX=/share/apps/
 
-TOP=`pwd`
+TOP=$(pwd)
 
-if [ ! -f microsoft-r-open-$VERSION.tar.gz ]; then
+if [[ ! -f microsoft-r-open-$VERSION.tar.gz ]]; then
     wget https://mran.blob.core.windows.net/install/mro/$VERSION/microsoft-r-open-$VERSION.tar.gz
 fi
 
