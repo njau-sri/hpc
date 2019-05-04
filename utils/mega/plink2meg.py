@@ -6,13 +6,13 @@ outfile = infile + ".meg"
 
 
 with open(infile + ".id") as f:
-	ind = []
-	for line in f:
-		v = line.split()
-		if len(v) == 1:
-			ind.append("#" + v[0])
-		elif len(v) == 2:
-			ind.append("#" + v[1])
+    ind = []
+    for line in f:
+        v = line.split()
+        if len(v) == 1:
+            ind.append("#" + v[0])
+        elif len(v) == 2:
+            ind.append("#" + v[1])
 
 with open(infile) as f1, open(outfile,"w") as f2:
     dat = []
