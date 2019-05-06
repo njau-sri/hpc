@@ -34,7 +34,7 @@ cryptpass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
 
 useradd -d $home/$username -e $expire -p $cryptpass $username
 
-if [[ $? -eq 0 ]]; then
+if [[ $? -ne 0 ]]; then
     echo "ERROR: failed to add $username"
     exit 1
 fi
