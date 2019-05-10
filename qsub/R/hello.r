@@ -1,7 +1,7 @@
 hello <- function(r=100) {
     # version of R
     print(R.version.string)
-    
+
     # timing matrix multiplication
     ptm <- proc.time()
     n <- 1000
