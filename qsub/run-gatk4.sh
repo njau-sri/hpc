@@ -8,7 +8,7 @@
 #
 
 export PATH=/opt/python/bin:$PATH
-export PATH=/share/apps/java/latest/bin:$PATH
+export PATH=/share/apps/java/jre/latest/bin:$PATH
 export PATH=/share/apps/gatk/4.1.0.0:$PATH
 
 # your code goes here
@@ -16,4 +16,3 @@ export PATH=/share/apps/gatk/4.1.0.0:$PATH
 gatk --version
 
 gatk --list
-

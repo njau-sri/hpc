@@ -8,7 +8,7 @@
 #
 
 
-export PATH=/share/apps/java/latest/bin:$PATH
+export PATH=/share/apps/java/jre/latest/bin:$PATH
 
 PREFIX=/share/apps/tassel/latest
 

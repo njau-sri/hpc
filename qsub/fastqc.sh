@@ -7,9 +7,10 @@
 #$ -l mem_free=4G
 #
 
-JAVAEXE=/share/apps/java/latest/bin/java
+export PATH=/share/apps/java/jre/latest/bin:$PATH
+
 FASTQC=/share/apps/fastqc/v0.11.8/fastqc
 
 # your code goes here
 
-$FASTQC --java $JAVAEXE a.fq
+$FASTQC a.fq
