@@ -13,8 +13,8 @@
 
 export OMP_NUM_THREADS=4
 
-EXE=/share/apps/rtm-gwas/2019.0/rtm-gwas-assoc
+export PATH=/share/apps/rtm-gwas/latest:$PATH
 
 # your code goes here
 
-$EXE --openmp --vcf snpldb.vcf --pheno pheno.txt --covar gsc.evec --alpha 0.01 --rsq 0.95 --out assoc.out
+rtm-gwas-assoc --openmp --vcf snpldb.vcf --pheno pheno.txt --covar gsc.evec --alpha 0.01 --rsq 0.95 --out assoc.out

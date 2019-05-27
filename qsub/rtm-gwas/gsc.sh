@@ -13,8 +13,8 @@
 
 export OMP_NUM_THREADS=4
 
-EXE=/share/apps/rtm-gwas/2019.0/rtm-gwas-gsc
+export PATH=/share/apps/rtm-gwas/latest:$PATH
 
 # your code goes here
 
-$EXE --openmp --vcf snpldb.vcf --out gsc.out
+rtm-gwas-gsc --openmp --vcf snpldb.vcf --out gsc.out

@@ -13,8 +13,8 @@
 
 export OMP_NUM_THREADS=4
 
-EXE=/share/apps/rtm-gwas/2019.0/rtm-gwas-snpldb
+export PATH=/share/apps/rtm-gwas/latest:$PATH
 
 # your code goes here
 
-$EXE --openmp --vcf snp.vcf --maxlen 100000 --maf 0.01 --out snpldb.out
+rtm-gwas-snpldb --openmp --vcf snp.vcf --maxlen 100000 --maf 0.01 --out snpldb.out
