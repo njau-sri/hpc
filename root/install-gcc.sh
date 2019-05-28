@@ -1,19 +1,19 @@
 #!/bin/bash
 
-VER=4.9.4
+GCC=gcc-4.9.4
+PREFIX=/share/apps/gcc/4.9.4
 
-PREFIX=/share/apps/gcc/$VER
+TOP=$(pwd)
 
-TOP=`pwd`
-
-tar jxf gcc-$VER.tar.bz2
-cd gcc-$VER
-./contrib/download_prerequisites
+tar jxf $GCC.tar.bz2
+cd $GCC
+./contrib/download_prerequisites || exit 1
 
 cd $TOP
-mkidr gcc-$VER-bin
-cd gcc-$VER-bin
-../gcc-$VER/configure --prefix=$PREFIX --enable-languages=c,c++,fortran --disable-multilib --disable-nls || exit
+mkidr $GCC-build && cd "$_"
+
+$TOP/$GCC/configure --prefix=$PREFIX --enable-languages=c,c++,fortran --disable-multilib --disable-nls || exit
+
 make -j4 || exit
 make install
 
