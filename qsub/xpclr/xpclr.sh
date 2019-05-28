@@ -15,4 +15,4 @@ export OPENBLAS_NUM_THREADS=1
 
 # your code goes here
 
-python3 xpclr.py
+xpclr --out $HOME/xpclr --format vcf --input snp.vcf --samplesA samplesA.txt --samplesB samplesB.txt --map map.txt
