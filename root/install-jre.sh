@@ -1,11 +1,7 @@
 #!/bin/bash
 
-tar xzf jre-8u201-linux-x64.tar.gz -C /share/apps/java/
+PREFIX=/share/apps/java/jre
 
-cd /share/apps/java
+tar zxf OpenJDK11U-jre_x64_linux_hotspot_11.0.3_7.tar.gz -C $PREFIX
 
-rm -rf latest
-
-ln -s jre1.8.0_201 latest
-
-cd
+echo 'export PATH=/share/apps/java/jre/jdk-11.0.3+7-jre/bin:$PATH' > $PREFIX/env.sh
