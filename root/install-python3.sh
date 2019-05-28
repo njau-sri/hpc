@@ -63,8 +63,7 @@ make install
 
 # env
 
-echo 'PREFIX=/share/apps/python/3.7.3' > $PREFIX/env.sh
+echo "export PATH=$PREFIX/bin:\$PATH" >> $PREFIX/env.sh
 echo 'export LD_LIBRARY_PATH=/share/apps/gcc/4.8.5/lib64:$LD_LIBRARY_PATH' >> $PREFIX/env.sh
-echo 'export LD_LIBRARY_PATH=$PREFIX/lib:$PREFIX/lib64:$LD_LIBRARY_PATH' >> $PREFIX/env.sh
-echo 'export PATH=$PREFIX/bin:$PATH' >> $PREFIX/env.sh
-echo 'python3 --version' >> $PREFIX/env.sh
+echo "export LD_LIBRARY_PATH=$PREFIX/lib:$PREFIX/lib64:\$LD_LIBRARY_PATH" >> $PREFIX/env.sh
+echo "python3 --version" >> $PREFIX/env.sh
