@@ -18,3 +18,8 @@ make -j4 || exit
 make install
 
 cd $TOP
+
+# env
+
+echo "export PATH=$PREFIX/bin:\$PATH" > $PREFIX/env.sh
+echo "export LD_LIBRARY_PATH=$PREFIX/lib64:\$LD_LIBRARY_PATH" >> $PREFIX/env.sh
