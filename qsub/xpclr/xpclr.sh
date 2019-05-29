@@ -19,6 +19,8 @@ output=$(pwd)/xpclr-output
 
 # your code goes here
 
+# Documentation - https://github.com/hardingnj/xpclr
+
 # vcf file
 vcf=snp.vcf.gz
 
