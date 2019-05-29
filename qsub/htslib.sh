@@ -7,8 +7,8 @@
 #$ -l mem_free=4G
 #
 
-SAMTOOLS=/share/apps/bwakit/0.7.15/samtools
+. /share/apps/htslib/1.9/env.sh
 
 # your code goes here
 
-$SAMTOOLS 
+samtools
