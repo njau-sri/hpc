@@ -1,11 +1,11 @@
 #!/bin/bash
 
-GCC=gcc-4.9.4
-PREFIX=/share/apps/gcc/4.9.4
+GCC=gcc-8.3.0
+PREFIX=/share/apps/gcc/8.3.0
 
 TOP=$(pwd)
 
-tar jxf $GCC.tar.bz2
+tar Jxf $GCC.tar.xz
 cd $GCC
 ./contrib/download_prerequisites || exit 1
 
