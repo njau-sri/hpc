@@ -71,7 +71,10 @@ emma.eigen.L.w.Z <- function(Z,K,complete=TRUE) {
 }
 
 emma.eigen.R <- function(Z,K,X,complete=TRUE) {
-  if ( is.null(Z) ) {
+  if ( ncol(X) == 0 ) {
+    return(emma.eigen.L(Z,K))
+  }
+  else if ( is.null(Z) ) {
     return(emma.eigen.R.wo.Z(K,X))
   }
   else {
@@ -734,6 +737,276 @@ emma.ML.LRT <- function(ys, xs, K, Z=NULL, X0 = NULL, ngrids=100, llim=-10, ulim
   }
   else {
     return (list(ps=ps,ML1s=ML1s,ML0s=ML0s,stats=stats,vgs=vgs,ves=ves))
+  }  
+}
+
+emma.test <- function(ys, xs, K, Z=NULL, x0s = NULL, X0 = NULL, dfxs = 1, dfx0s = 1, use.MLE = FALSE, use.LRT = FALSE, ngrids = 100, llim = -10, ulim = 10, esp=1e-10, ponly = FALSE)
+{
+  stopifnot (dfxs > 0)
+  
+  if ( is.null(dim(ys)) || ncol(ys) == 1 ) {
+    ys <- matrix(ys,1,length(ys))
+  }
+  
+  if ( is.null(dim(xs)) || ncol(xs) == 1 ) {
+    xs <- matrix(xs,1,length(xs))
+  }
+  nx <- nrow(xs)/dfxs
+  
+  if ( is.null(x0s) ) {
+    dfx0s = 0
+    x0s <- matrix(NA,0,ncol(xs))
+  }
+  # X0 automatically contains intercept. If no intercept is to be used,
+  #    X0 should be matrix(nrow=ncol(ys),ncol=0)
+  if ( is.null(X0) ) {
+    X0 <- matrix(1,ncol(ys),1)
+  }
+
+  stopifnot(Z == NULL) # The case where Z is not null is not implemented
+
+  ny <- nrow(ys)
+  iy <- ncol(ys)
+  ix <- ncol(xs)
+  
+  stopifnot(nrow(K) == ix)
+  stopifnot(ncol(K) == ix)
+  stopifnot(nrow(X0) == iy)
+
+  if ( !ponly ) {
+    LLs <- matrix(nrow=m,ncol=g)
+    vgs <- matrix(nrow=m,ncol=g)
+    ves <- matrix(nrow=m,ncol=g)
+  }
+  dfs <- matrix(nrow=m,ncol=g)
+  stats <- matrix(nrow=m,ncol=g)
+  ps <- matrix(nrow=m,ncol=g)
+
+  # The case with no missing phenotypes
+  if ( sum(is.na(ys)) == 0 ) {
+    if ( ( use.MLE ) || ( !use.LRT ) ) {
+      eig.L0 <- emma.eigen.L(Z,K)
+    }
+    if ( dfx0s == 0 ) {
+      eig.R0 <- emma.eigen.R(Z,K,X0)
+    }
+    x.prev <- NULL
+
+    for(i in 1:ix) {
+      x1 <- t(xs[(dfxs*(i-1)+1):(dfxs*i),,drop=FALSE])
+      if ( dfxs0 == 0 ) {
+        x0 <- X0
+      }
+      else {
+        x0 <- cbind(t(x0s[(dfx0s*(i-1)+1):(dfx0s*i),,drop=FALSE]),X0)
+      }
+      x <-  cbind(x1,x0)
+      xvids <- rowSums(is.na(x) == 0)
+      nxv <- sum(xvids)
+      xv <- x[xvids,,drop=FALSE]
+      Kv <- K[xvids,xvids,drop=FALSE]
+      yv <- ys[j,xvids]
+
+      if ( identical(x.prev, xv) ) {
+        if ( !ponly ) {
+          vgs[i,] <- vgs[i-1,]
+          ves[i,] <- ves[i-1,]
+          dfs[i,] <- dfs[i-1,]
+          REMLs[i,] <- REMLs[i-1,]
+          stats[i,] <- stats[i-1,]
+        }
+        ps[i,] <- ps[i-1,]
+      }
+      else {
+        eig.R1 = emma.eigen.R.wo.Z(Kv,xv)
+        
+        for(j in 1:iy) {
+          if ( ( use.MLE ) || ( !use.LRT ) ) {          
+            if ( nxv < t ) {
+              # NOTE: this complexity can be improved by avoiding eigen computation for identical missing patterns
+              eig.L0v <- emma.eigen.L.wo.Z(Kv)  
+            }
+            else {
+              eig.L0v <- eig.L0
+            }
+          }
+
+          if ( use.MLE ) {
+            MLE <- emma.REMLE(yv,xv,Kv,NULL,ngrids,llim,ulim,esp,eig.R1)
+            stop("Not implemented yet")
+          }
+          else {
+            REMLE <- emma.REMLE(yv,xv,Kv,NULL,ngrids,llim,ulim,esp,eig.R1)
+            if ( use.LRT ) {
+              stop("Not implemented yet")                
+            }
+            else {
+              U <- eig.L0v$vectors * matrix(sqrt(1/(eig.L0v$values+REMLE$delta)),t,t,byrow=TRUE)
+              dfs[i,j] <- length(eig.R1$values)
+              yt <- crossprod(U,yv)
+              xt <- crossprod(U,xv)
+              ixx <- solve(crossprod(xt,xt))
+              beta <- ixx%*%crossprod(xt,yt)
+              if ( dfxs == 1 ) {
+                stats[i,j] <- beta[q1]/sqrt(iXX[q1,q1]*REMLE$vg)
+              }
+              else {
+                model.m <- c(rep(1,dfxs),rep(0,ncol(xv)-dfxs))
+                stats[i,j] <-
+                  crossprod(crossprod(solve(crossprod(crossprod(iXX,model.m),
+                                                      model.m)),
+                                      model.m*beta),model.m*beta)
+                
+              }
+              if ( !ponly ) {
+                vgs[i,j] <- REMLE$vg
+                ves[i,j] <- REMLE$ve
+                REMLs[i,j] <- REMLE$REML
+              }
+            }
+          }
+        }
+        if ( dfxs == 1 ) {
+          ps[i,] <- 2*pt(abs(stats[i,]),dfs[i,],lower.tail=FALSE)
+        }
+        else {
+          ps[i,] <- pf(abs(stats[i,]),dfs[i,],lower.tail=FALSE)          
+        }
+      }
+    }
+  }
+  # The case with missing genotypes - not implemented yet
+  else {
+    stop("Not implemented yet")
+    eig.L <- emma.eigen.L(Z,K)
+    eig.R0 <- emma.eigen.R(Z,K,X0)
+      
+    x.prev <- vector(length=0)
+    
+    for(i in 1:m) {
+      vids <- !is.na(xs[i,])
+      nv <- sum(vids)
+      xv <- xs[i,vids]
+
+      if ( ( mean(xv) <= 0 ) || ( mean(xv) >= 1 ) ) {
+        if (!ponly) {
+          vgs[i,] <- rep(NA,g)
+          ves[i,] <- rep(NA,g)
+          REMLs[i,] <- rep(NA,g)
+          dfs[i,] <- rep(NA,g)
+        }
+        ps[i,] = rep(1,g)
+      }      
+      else if ( identical(x.prev, xv) ) {
+        if ( !ponly ) {
+          stats[i,] <- stats[i-1,]
+          vgs[i,] <- vgs[i-1,]
+          ves[i,] <- ves[i-1,]
+          REMLs[i,] <- REMLs[i-1,]
+          dfs[i,] <- dfs[i-1,]
+        }
+        ps[i,] = ps[i-1,]
+      }
+      else {
+        if ( is.null(Z) ) {
+          X <- cbind(X0,xs[i,])
+          if ( nv == t ) {
+            eig.R1 = emma.eigen.R.wo.Z(K,X)
+          }
+        }
+        else {
+          vrows <- as.logical(rowSums(Z[,vids,drop=FALSE]))
+          X <- cbind(X0,Z[,vids,drop=FALSE]%*%t(xs[i,vids,drop=FALSE]))
+          if ( nv == t ) {
+            eig.R1 = emma.eigen.R.w.Z(Z,K,X)
+          }          
+        }
+
+        for(j in 1:g) {
+          vrows <- !is.na(ys[j,])
+          if ( nv == t ) {
+            yv <- ys[j,vrows]
+            nr <- sum(vrows)
+            if ( is.null(Z) ) {
+              if ( nr == n ) {
+                REMLE <- emma.REMLE(yv,X,K,NULL,ngrids,llim,ulim,esp,eig.R1)
+                U <- eig.L$vectors * matrix(sqrt(1/(eig.L$values+REMLE$delta)),n,n,byrow=TRUE)                
+              }
+              else {
+                eig.L0 <- emma.eigen.L.wo.Z(K[vrows,vrows,drop=FALSE])
+                REMLE <- emma.REMLE(yv,X[vrows,,drop=FALSE],K[vrows,vrows,drop=FALSE],NULL,ngrids,llim,ulim,esp)
+                U <- eig.L0$vectors * matrix(sqrt(1/(eig.L0$values+REMLE$delta)),nr,nr,byrow=TRUE)
+              }
+              dfs[i,j] <- nr-q1
+            }
+            else {
+              if ( nr == n ) {
+                REMLE <- emma.REMLE(yv,X,K,Z,ngrids,llim,ulim,esp,eig.R1)
+                U <- eig.L$vectors * matrix(c(sqrt(1/(eig.L$values+REMLE$delta)),rep(sqrt(1/REMLE$delta),n-t)),n,n,byrow=TRUE)                
+              }
+              else {
+                vtids <- as.logical(colSums(Z[vrows,,drop=FALSE]))
+                eig.L0 <- emma.eigen.L.w.Z(Z[vrows,vtids,drop=FALSE],K[vtids,vtids,drop=FALSE])
+                REMLE <- emma.REMLE(yv,X[vrows,,drop=FALSE],K[vtids,vtids,drop=FALSE],Z[vrows,vtids,drop=FALSE],ngrids,llim,ulim,esp)
+                U <- eig.L0$vectors * matrix(c(sqrt(1/(eig.L0$values+REMLE$delta)),rep(sqrt(1/REMLE$delta),nr-sum(vtids))),nr,nr,byrow=TRUE)
+              }
+              dfs[i,j] <- nr-q1
+            }
+
+            yt <- crossprod(U,yv)
+            Xt <- crossprod(U,X[vrows,,drop=FALSE])
+            iXX <- solve(crossprod(Xt,Xt))
+            beta <- iXX%*%crossprod(Xt,yt)
+            if ( !ponly ) {
+              vgs[i,j] <- REMLE$vg
+              ves[i,j] <- REMLE$ve
+              REMLs[i,j] <- REMLE$REML
+            }
+            stats[i,j] <- beta[q1]/sqrt(iXX[q1,q1]*REMLE$vg)
+          }
+          else {
+            if ( is.null(Z) ) {
+              vtids <- vrows & vids
+              eig.L0 <- emma.eigen.L.wo.Z(K[vtids,vtids,drop=FALSE])
+              yv <- ys[j,vtids]
+              nr <- sum(vtids)
+              REMLE <- emma.REMLE(yv,X[vtids,,drop=FALSE],K[vtids,vtids,drop=FALSE],NULL,ngrids,llim,ulim,esp)
+              U <- eig.L0$vectors * matrix(sqrt(1/(eig.L0$values+REMLE$delta)),nr,nr,byrow=TRUE)
+              Xt <- crossprod(U,X[vtids,,drop=FALSE])
+              dfs[i,j] <- nr-q1
+            }
+            else {
+              vtids <- as.logical(colSums(Z[vrows,,drop=FALSE])) & vids
+              vtrows <- vrows & as.logical(rowSums(Z[,vids,drop=FALSE]))
+              eig.L0 <- emma.eigen.L.w.Z(Z[vtrows,vtids,drop=FALSE],K[vtids,vtids,drop=FALSE])
+              yv <- ys[j,vtrows]
+              nr <- sum(vtrows)
+              REMLE <- emma.REMLE(yv,X[vtrows,,drop=FALSE],K[vtids,vtids,drop=FALSE],Z[vtrows,vtids,drop=FALSE],ngrids,llim,ulim,esp)
+              U <- eig.L0$vectors * matrix(c(sqrt(1/(eig.L0$values+REMLE$delta)),rep(sqrt(1/REMLE$delta),nr-sum(vtids))),nr,nr,byrow=TRUE)
+              Xt <- crossprod(U,X[vtrows,,drop=FALSE])
+              dfs[i,j] <- nr-q1
+            }
+            yt <- crossprod(U,yv)
+            iXX <- solve(crossprod(Xt,Xt))
+            beta <- iXX%*%crossprod(Xt,yt)
+            if ( !ponly ) {
+              vgs[i,j] <- REMLE$vg
+              ves[i,j] <- REMLE$ve
+              REMLs[i,j] <- REMLE$REML
+            }
+            stats[i,j] <- beta[q1]/sqrt(iXX[q1,q1]*REMLE$vg)
+            
+          }
+        }
+        ps[i,] <- 2*pt(abs(stats[i,]),dfs[i,],lower.tail=FALSE)        
+      }
+    }    
+  }
+  if ( ponly ) {
+    return (ps)
+  }
+  else {
+    return (list(ps=ps,REMLs=REMLs,stats=stats,dfs=dfs,vgs=vgs,ves=ves))
   }  
 }
 

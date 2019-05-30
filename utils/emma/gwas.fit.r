@@ -1,4 +1,4 @@
-source("emma.v1.r")
+source("emma.r")
 
 xy <- read.csv("xy.csv")
 K <- read.csv("k.csv",header=FALSE)
