@@ -2,6 +2,6 @@
 
 https://github.com/njau-sri/hpc/wiki
 
-### Mirror in China
+### 中国镜像
 
 https://gitee.com/njau-sri/hpc
