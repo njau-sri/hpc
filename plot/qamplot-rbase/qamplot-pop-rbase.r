@@ -14,6 +14,13 @@ y <- y[,2,drop=FALSE]
 
 y.ticks <- sprintf("%.0f", quantile(y[,1], na.rm=TRUE))
 
+# population
+
+pop <- read.table("pop.txt", header=TRUE)
+
+ord <- match(rownames(y), pop[,1])
+pop <- pop[ord,2]
+
 # QTL-allele matrix
 
 qam <- read.table("qam.txt", header=TRUE, check.names=FALSE)
@@ -68,23 +75,33 @@ if (a != b) {
 
 # plot
 
-tiff("qam.tif", width=14, height=10, units="cm", pointsize=10, res=300, compression="lzw")
+tiff("qam-pop.tif", width=14, height=10, units="cm", pointsize=10, res=300, compression="lzw")
 
-layout(matrix(c(1,2),1,2), widths=c(9,1.1))
+layout(matrix(c(1,2,3,0),2,2), widths=c(9,1.1), height=c(5,1))
 
 # heatmap
 
-par(mar=c(3,2,0.5,0.5), lend=2, cex=1)
-image(t(B), col=col.map, axes=FALSE, xlab=NA, ylab=NA)
-axis(1, at=seq(0,1,0.25), labels=y.ticks, lwd=0, lwd.ticks=1, tcl=-0.3, mgp=c(0,0.5,0))
+par(mar=c(0.5,2,0.5,0.5), lend=2, cex=1)
+image(t(B), col=col.map, axes=FALSE)
 title(ylab="QTL", line=0.6)
+
+# accession colorbar
+
+par(mar=c(3,2,0,0.5), lend=2, cex=1)
+image(cbind(1:nrow(y)), col=col.pop[c(pop)], axes=FALSE, xlab=NA, ylab=NA)
+axis(1, at=seq(0,1,0.25), labels=y.ticks, lwd=0, lwd.ticks=1, tcl=-0.3, mgp=c(0,0.5,0))
 title(xlab="Accession", line=1.5)
 
 # effect colorbar
 
-par(mar=c(6,0,3.5,2.5), lend=2, cex=1)
+par(mar=c(3,0,3.5,2.5), lend=2, cex=1)
 x <- seq(min(B), max(B), length=length(col.map))
 image(x=1, y=x, z=t(x), col=col.map, axes=FALSE, xlab=NA, ylab=NA)
 axis(4, las=2, lwd=0, lwd.ticks=1, tcl=0.3, mgp=c(0,0.5,0))
 
+dev.off()
+
+tiff("pop-color.tif", width=4, height=4, units="cm", pointsize=10, res=300, compression="lzw")
+par(mar=c(1,1,1,1))
+pie(rep(1,length(levels(pop))), labels=levels(pop), col=col.pop, border=NA)
 dev.off()
