@@ -54,20 +54,3 @@ Advanced data file options
                                   indicating phase (linkage model)
 #define MARKOVPHASE      0 // (B) the phase info follows a Markov model.
 #define NOTAMBIGUOUS  -999 // (int) for use in some analyses of polyploid data
-
-
-
-Command line options:
-
--m mainparams
--e extraparams
--s stratparams
--K MAXPOPS
--L NUMLOCI
--N NUMINDS
--i input file
--o output file
--D SEED
-
-
-

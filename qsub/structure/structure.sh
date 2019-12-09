@@ -7,30 +7,30 @@
 #$ -l mem_free=4G
 #
 
-PLINK=/share/apps/plink/plink-1.90b6.7
-STRUCTURE=/share/apps/structure/2.3.4/structure
+. /share/apps/plink/env.sh
+. /share/apps/structure/env.sh
 
 # your code goes here
-
-VCF=snp.vcf
 
 MAXPOPS=5
 NUMREPS=3
 
-$PLINK --vcf $VCF -allow-extra-chr --indep-pairwise 50 10 0.3
+vcf_file=snp.vcf
 
-$PLINK --vcf $VCF -allow-extra-chr --extract plink.prune.in --recode12 --out pruned
+
+plink --allow-extra-chr --vcf $vcf_file --indep-pairwise 50 10 0.1
+plink --allow-extra-chr --vcf $vcf_file --extract plink.prune.in --recode12 --out pruned
+
+
+NUMINDS=$(wc -l pruned.ped | cut -d " " -f 1)
+NUMLOCI=$(wc -l pruned.map | cut -d " " -f 1)
 cut -d " " -f 2,7- pruned.ped > infile
 
-NUMINDS=$(wc -l infile | cut -d " " -f 1)
-NUMLOCI=$(head -n 1 infile | awk '{print NF}')
-NUMLOCI=$(expr $NUMLOCI - 1)
-NUMLOCI=$(expr $NUMLOCI / 2)
 
-for i in $(seq $MAXPOPS)
+for K in $(seq $MAXPOPS)
 do
-    for j in $(seq $NUMREPS)
+    for R in $(seq $NUMREPS)
     do
-        $STRUCTURE -i infile -L $NUMLOCI -N $NUMINDS -K $i -o outfile_K${i}_${j}
+        structure -L $NUMLOCI -N $NUMINDS -K $K -o outfile_K${K}_R${R}
     done
 done
