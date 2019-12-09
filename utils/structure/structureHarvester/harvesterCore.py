@@ -249,13 +249,13 @@ def writeRawOutputToFile(filename, data):
              '# Core version: %s\n'
              % __version__)
   file.write('# File generated at %s\n'
-             % (time.strftime('%Y-%b-%d %H:%M:%S %Z', time.localtime())))
+             % time.asctime())
   file.write('#\n')
   file.write('\n##########\n')
   file.write('# K\tReps\t'
         'mean est. LnP(Data)\t'
         'stdev est. LnP(Data)\n')
-  for i in xrange(0, len(data.sortedKs)):
+  for i in range(0, len(data.sortedKs)):
     k = data.sortedKs[i]
     file.write('%d\t%d\t%f\t%f\n' % (k, len(data.records[k]),
                                      data.estLnProbMeans[k],
@@ -423,7 +423,7 @@ def clumppPopFile(inputDir, outputDir, data):
             raise ClumppLineStructure(r.name, regex1, lineno, line, data)
           else:
             f.write('%3d:' % (int(m1.group(1))))
-            for i in xrange(2, len(m1.groups()) + 1):
+            for i in range(2, len(m1.groups()) + 1):
               f.write('\t%s' % m1.group(i))
             f.write('\n')
       if f != None:
@@ -486,7 +486,7 @@ def evannoTests(data, isWeb=False):
     out += '<p style="color:red;">Test: '
     out += 'The number of replicates per K > 1. FAIL</p>\n'
   # Standard Devation for a K (but not the first or last K) is zero
-  for i in xrange(1, len(data.sortedKs) - 1):
+  for i in range(1, len(data.sortedKs) - 1):
     k = data.sortedKs[i]
     if data.estLnProbStdevs[k] < EPSILON: # our epsilon
       fail = True
@@ -544,11 +544,11 @@ def calculatePrimesDoublePrimesDeltaK(data):
   data.LnPK = {}
   data.LnPPK = {}
   data.deltaK = {}
-  for i in xrange(1, len(data.sortedKs)):
+  for i in range(1, len(data.sortedKs)):
     thisK = data.sortedKs[i]
     prevK = data.sortedKs[i - 1]
     data.LnPK[thisK] = data.estLnProbMeans[thisK] - data.estLnProbMeans[prevK]
-  for i in xrange(1, len(data.sortedKs) - 1):
+  for i in range(1, len(data.sortedKs) - 1):
     prevK = data.sortedKs[i - 1]
     thisK = data.sortedKs[i]
     nextK = data.sortedKs[i + 1]

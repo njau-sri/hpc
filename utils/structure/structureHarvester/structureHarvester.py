@@ -163,7 +163,7 @@ def harvestFiles(data, args):
       sys.stderr.write('%s\n' % errorString)
       sys.exit(1)
   data.sortedKs = data.records.keys()
-  data.sortedKs.sort()
+  data.sortedKs = sorted(data.sortedKs)
 
 
 def evannoMethod(data, args):
@@ -197,13 +197,13 @@ def writeEvannoTableToFile(data, args):
              '# Core version: %s\n'
              % (__version__, hc.__version__))
   file.write('# File generated at %s\n'
-             % (time.strftime('%Y-%b-%d %H:%M:%S %Z', time.localtime())))
+             % time.asctime())
   file.write('#\n')
   file.write('\n##########\n')
   file.write('# K\tReps\t'
              'Mean LnP(K)\tStdev LnP(K)\t'
              'Ln\'(K)\t|Ln\'\'(K)|\tDelta K\n')
-  for i in xrange(0, len(data.sortedKs)):
+  for i in range(0, len(data.sortedKs)):
     k = data.sortedKs[i]
     if k in data.LnPK:
       LnPKstr = '%f' % data.LnPK[k]
@@ -240,9 +240,9 @@ def main():
            'results\n'
            'directory and performs the selected analyses')
   data = hc.Data()
-  parser = ArgumentParser(usage=usage,
-                          version='%(prog)s ' + '%s core %s'
-                          % (__version__, hc.__version__))
+  parser = ArgumentParser(usage=usage)
+  parser.add_argument('--version', action='version',
+    version='%(prog)s ' + '%s core %s' % (__version__, hc.__version__))
   initializeArguments(parser)
   args = parser.parse_args()
   checkArguments(parser, args)
