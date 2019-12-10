@@ -24,6 +24,11 @@ vcf_file=snp.vcf
 
 
 # LD-based SNP pruning
+#
+# 50   window size in variant count
+# 10   step size in variant count
+# 0.1  pairwise r^2 threshold
+#
 plink --allow-extra-chr --vcf $vcf_file --indep-pairwise 50 10 0.1
 plink --allow-extra-chr --vcf $vcf_file --extract plink.prune.in --recode12 --out pruned
 
@@ -40,6 +45,12 @@ mkdir structureoutput
 
 
 # run STRUCTURE
+#
+# -L  change the number of loci
+# -N  change the number of individuals
+# -K  change the number of populations
+# -o  write results to a different output file
+#
 for K in $(seq $MAXPOPS)
 do
     for R in $(seq $NUMREPS)
@@ -47,6 +58,3 @@ do
         structure -L $NUMLOCI -N $NUMINDS -K $K -o structureoutput/outfile_K${K}_R${R}
     done
 done
-
-
-# python structureHarvester.py --evanno --clumpp --out harvesteroutput --dir structureoutput
