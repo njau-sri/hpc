@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TasselPipeline>
+    <fork1>
+        <importGuess>geno.vcf</importGuess>
+    </fork1>
+    <fork2>
+        <importGuess>pheno.txt</importGuess>
+    </fork2>
+    <fork3>
+        <importGuess>stru.txt</importGuess>
+        <excludeLastTrait/>
+    </fork3>
+    <combine4>
+        <input1/>
+        <input2/>
+        <input3/>
+        <intersect/>
+        <FixedEffectLMPlugin/>
+        <export>glm_Q_output</export>
+    </combine4>
+</TasselPipeline>

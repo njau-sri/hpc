@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TasselPipeline>
+    <fork1>
+        <importGuess>geno.vcf</importGuess>
+    </fork1>
+    <fork2>
+        <importGuess>pheno.txt</importGuess>
+    </fork2>
+    <fork3>
+        <importGuess>stru.txt</importGuess>
+        <excludeLastTrait/>
+    </fork3>
+    <fork4>
+        <importGuess>Centered_IBS.txt</importGuess>
+    </fork4>
+    <combine5>
+        <input1/>
+        <input2/>
+        <input3/>
+        <intersect/>
+    </combine5>
+    <combine6>
+        <input5/>
+        <input4/>
+        <mlm>
+            <mlmVarCompEst>P3D</mlmVarCompEst>
+            <mlmCompressionLevel>None</mlmCompressionLevel>
+        </mlm>
+        <export>mlm_QK_output</export>
+    </combine6>
+</TasselPipeline>

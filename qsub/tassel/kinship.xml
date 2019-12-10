@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TasselPipeline>
+    <fork1>
+        <importGuess>geno.vcf</importGuess>
+        <KinshipPlugin>
+            <method>Centered_IBS</method>
+        </KinshipPlugin>
+        <export>
+            Centered_IBS.txt
+            <exportType>SqrMatrix</exportType>
+        </export>
+    </fork1>
+    <runfork1/>
+</TasselPipeline>
