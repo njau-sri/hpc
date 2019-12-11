@@ -1,7 +1,7 @@
 @echo off
 
 
-REM ## TASSEL HOME DIRECTORY
+REM ## TASSEL home directory
 set "TASSEL=c:\tassel-5.2.58"
 
 REM ## Initial and maximum memory size

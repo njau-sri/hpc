@@ -9,7 +9,25 @@
 
 . /share/apps/java/jre/env.sh
 
+# TASSEL home directory
 TASSEL=/share/apps/tassel/latest
 
+# Initial and maximum memory size
+XMS=-Xms512m
+XMX=-Xmx4g
 
-$TASSEL/run_pipeline.pl -Xms512m -Xmx4g -configFile glm-P.xml
+# XML configuration file
+CONFIG=glm-P.xml
+
+
+
+
+# !!! DO NOT MODIFY !!!
+
+CP=$TASSEL/sTASSEL.jar
+for i in $(ls $TASSEL/lib/*.jar)
+do
+  CP=$CP:$i
+done
+
+java -classpath "$CP" $XMS $XMX net.maizegenetics.pipeline.TasselPipeline -configFile $CONFIG
