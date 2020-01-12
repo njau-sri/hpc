@@ -2,19 +2,33 @@
     <head>
         <meta charset="utf-8">
         <title>NCSI HPC Cluster</title>
+        <style>
+            table {
+                margin: 0px auto;
+                border: 1px solid black;
+                border-spacing: 0;
+            }
+            table td {
+                border: 1px solid black;
+                padding: 10px;
+            }
+        </style>
     </head>
-
     <body style="text-align:center">
         <h1>NCSI HPC Cluster</h1>
         <h3><a href="http://172.30.0.82/ganglia/" target="_blank">Cluster Status</a></h3>
         <h3><a href="http://172.30.0.82/phpsysinfo/" target="_blank">System Information</a></h3>
-        <br/>
-        <h1>Administrator</h1>
-        <p>Jianbo He (hjbxyz@gmail.com)</p>
-        <p>Room F502</p>
-        <br/>
-        <h1>Please visit the following link for more information!</h1>
+        <h1>Hardware</h1>
+        <table>
+            <tr><td>Login</td><td>2* Intel Xeon E5-2609 4C, 16 GB RAM</td></tr>
+            <tr><td>Compute 1</td><td>2* Intel Xeon E5-2670 8C, 128 GB RAM</td></tr>
+            <tr><td>Compute 2</td><td>2* Intel Xeon E5-2670 8C, 224 GB RAM</td></tr>
+            <tr><td>Storage</td><td>24 TB</td></tr>
+        </table>
+        <h1>Usage</h1>
+        <h3><a href="https://www.cnblogs.com/radact/p/12183097.html" target="_blank">https://www.cnblogs.com/radact/p/12183097.html</a></h3>
         <h3><a href="https://github.com/njau-sri/hpc/wiki" target="_blank">https://github.com/njau-sri/hpc/wiki</a></h3>
-
+        <h1>Sample Job Script</h1>
+        <h3><a href="https://github.com/njau-sri/hpc/tree/master/qsub" target="_blank">https://github.com/njau-sri/hpc/tree/master/qsub</a></h3>
     </body>
 </html>
