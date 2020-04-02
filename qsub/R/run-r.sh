@@ -7,12 +7,8 @@
 #$ -l mem_free=4G
 #
 
-PREFIX=/share/apps/R/3.5.3
-
-export OMP_NUM_THREADS=1
-export MKL_NUM_THREADS=1
-export LD_LIBRARY_PATH=$PREFIX/lib:$LD_LIBRARY_PATH
+. /share/apps/R/3.6.3/env.sh
 
 # your code goes here
 
-$PREFIX/bin/Rscript hello.r
+Rscript hello.r
